@@ -1,0 +1,130 @@
+Installation
+------------
+
+Your web server needs to have mod_celerity.so regsitered in the conf.d
+folder. Then you need to have celerity started and running (it works
+much like coldfusion, or httpd itself - it runs as a standalone daemon).
+
+For this open source script, simply unzip the archive into the folder
+you wish to use as the URL, for example <your_domain>/forum/ then make
+a directory in your root folder called forum, put the archive into that
+folder, and unzip it. To test, simply open a browser and point it to
+<your_domain>/forum/ and the starter environment is up and running. It
+really is that easy!
+
+Inspiration
+-----------
+
+This project was inspired by the old 2006 PHP product by Ralph Capper
+the author of TinyPHPForum. Unfortunately for Ralph, TPF was one of his
+teething projects and it was riddled with security issues. This rewrite
+of his code and design attempts to squash all of those issues by better
+security practices and htaccess control. It isn't like there really is
+anything stored on these type of sites to attack hackers, but, when a
+hacker has to teeth somewhere they usualy start with web scripts.
+
+Directory Structure
+-------------------
+
+../             root domain of your server (remember we are a folder!)
+./emoticons/    the root folder for all support emoticon images
+./forums/       the root folder for all posts (we are file based!)
+./i18n/         the root folder for all languages
+./images/       the root folder for all graphics, skins and avatars
+
+Filenames
+---------
+
+./.htaccess     the file that denys web server access to all ini files
+./index.p       the main script for the whole TMPF product
+./users.ini     the main user database
+./forums.ini    the main forums database
+
+Filenames in i18n
+-----------------
+
+en              the English key=value pair
+es              the Spanish key=value part
+etc...
+
+Filenames in forums
+-------------------
+
+1..xxxx         each folder, is a separate forum see forums.ini
+
+1..xxxx         in each of these numbered forum folders you will find
+                a numbered folder, which is for each main forum topic.
+                e.g. ./forums/1/1/ = forum #1, topic #1
+
+1..xxxx         in each of these numbered topic folders you will find
+                one or more files. Based upon configuration all files
+                are compressed using built-in compression call or if
+                compression is disabled and permalink is enabled for
+                this topic the files are stored as .html files and
+                the URLs are /forums/1/1/topic%20title.html instead
+                of the /?forum=1/1/1 for the compressed version.
+
+1..xxxx.ini     in each of the numbered topic folders is a userid.ini
+                file - used as a high message watermark. So the system
+                actually knows per topic and thread the last message
+                the user has read.
+
+topic.ini       in each of the numbered topic folders is a topic.ini
+                file - used for total messages, optional threading and
+                permissions.
+
+forums.ini explained
+--------------------
+[global]
+count           number of forums (could do disk I/O but this is faster)
+lastpost        most recent post system wide (folder slash forum slash msg)
+lastposter      the user the posted the newest message
+userscreate     true of false, can users create new forums - default=true
+
+[forum#]        where # represents the folder in ./forums/#
+description     description of the forum
+userscreate     true or false, can users create new topics - default=true
+creator         user name that created this forum
+created         timestamp when this forum was created
+lastpost        most recent post timestamp
+lastposter      the user the posted the newest message
+views           how many hits has this folder/topics had last 24hrs?
+posts           how many posts has this folder/topic had last 24hrs?
+topics          how many message topics are in this fourm?
+
+topic.ini explained
+-------------------
+[global]
+count           number of threads in this topic
+
+[topic#]        where # represents the folder in ./forums/x/#
+count           number of messages in this specific thread
+name            title of the thread's topic
+description     description of what this thread is about
+creator         user name that created this topic
+created         timestamp when this topic was created
+views           number of times this topic has been viewed
+posts           number of replies to this topic
+lastpost        shortcut to the last message or reply itself
+lastposted      timestamp when this latest reply was posted
+lastposter      user name of who posted this latest reply
+
+Admin Profile
+-------------
+
+Use the built in account:
+
+Username: admin
+Password: admin
+
+Either change the password, or create an account then make it admin using
+the account above.
+
+Note: Remember to check the 'admin' box if you edit an admin profile, or
+the admin functionaility will be lost.
+
+If you lose all admin accounts this way (oops!) then edit any account's
+file (./users.ini) and change the value for 'password=' to:
+5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8
+then save and login, you password is now password. Of you can run the command
+line utility p.p (mp p.p your_new_password) and paste it in as above.
