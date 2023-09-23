@@ -1,7 +1,7 @@
 Installation
 ------------
 
-Your web server needs to have mod_celerity.so regsitered in the conf.d
+Your web server needs to have mod_celerity.so registered in the conf.d
 folder. Then you need to have celerity started and running (it works
 much like coldfusion, or httpd itself - it runs as a standalone daemon).
 
@@ -9,7 +9,7 @@ For this open source script, simply unzip the archive into the folder
 you wish to use as the URL, for example <your_domain>/forum/ then make
 a directory in your root folder called forum, put the archive into that
 folder, and unzip it. To test, simply open a browser and point it to
-<your_domain>/forum/ and the starter environment is up and running. It
+<your_domain>/forum/, and the starter environment is up and running. It
 really is that easy!
 
 Inspiration
@@ -21,21 +21,21 @@ teething projects and it was riddled with security issues. This rewrite
 of his code and design attempts to squash all of those issues by better
 security practices and htaccess control. It isn't like there really is
 anything stored on these type of sites to attack hackers, but, when a
-hacker has to teeth somewhere they usualy start with web scripts.
+hacker has teeth somewhere they usually start with web scripts.
 
 Directory Structure
 -------------------
 
 ../             root domain of your server (remember we are a folder!)
 ./emoticons/    the root folder for all support emoticon images
-./forums/       the root folder for all posts (we are file based!)
+./forums/       the root folder for all posts (we are file-based!)
 ./i18n/         the root folder for all languages
-./images/       the root folder for all graphics, skins and avatars
+./images/       the root folder for all graphics, skins, and avatars
 
 Filenames
 ---------
 
-./.htaccess     the file that denys web server access to all ini files
+./.htaccess     the file that Denys web server access to all ini files
 ./index.p       the main script for the whole TMPF product
 ./users.ini     the main user database
 ./forums.ini    the main forums database
@@ -76,10 +76,10 @@ topic.ini       in each of the numbered topic folders is a topic.ini
 forums.ini explained
 --------------------
 [global]
-count           number of forums (could do disk I/O but this is faster)
-lastpost        most recent post system wide (folder slash forum slash msg)
-lastposter      the user the posted the newest message
-userscreate     true of false, can users create new forums - default=true
+count           the number of forums (could do disk I/O but this is faster)
+lastpost        most recent post system-wide (folder slash forum slash msg)
+lastposter      the user posted the newest message
+userscreate     true or false, can users create new forums - default=true
 
 [forum#]        where # represents the folder in ./forums/#
 description     description of the forum
@@ -87,18 +87,18 @@ userscreate     true or false, can users create new topics - default=true
 creator         user name that created this forum
 created         timestamp when this forum was created
 lastpost        most recent post timestamp
-lastposter      the user the posted the newest message
-views           how many hits has this folder/topics had last 24hrs?
+lastposter      the user posted the newest message
+views           how many hits this folder/topics had last 24 hours?
 posts           how many posts has this folder/topic had last 24hrs?
 topics          how many message topics are in this fourm?
 
 topic.ini explained
 -------------------
 [global]
-count           number of threads in this topic
+count           the number of threads in this topic
 
 [topic#]        where # represents the folder in ./forums/x/#
-count           number of messages in this specific thread
+count           the number of messages in this specific thread
 name            title of the thread's topic
 description     description of what this thread is about
 creator         user name that created this topic
@@ -121,10 +121,10 @@ Either change the password, or create an account then make it admin using
 the account above.
 
 Note: Remember to check the 'admin' box if you edit an admin profile, or
-the admin functionaility will be lost.
+the admin functionality will be lost.
 
 If you lose all admin accounts this way (oops!) then edit any account's
 file (./users.ini) and change the value for 'password=' to:
-5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8
-then save and login, you password is now password. Of you can run the command
+**5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8**
+then save and log in, your password is now password. You can run the command
 line utility p.p (mp p.p your_new_password) and paste it in as above.
